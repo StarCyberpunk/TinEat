@@ -1,6 +1,5 @@
 package ru.tineat.ui.home
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,14 @@ import ru.tineat.Product
 import ru.tineat.User
 import ru.tineat.databinding.FragmentHomeBinding
 
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    var User1: User = User("Имя","Адрес","88")
-    var Next:Boolean=false
-    var Indexx:Int=0
+    private val binding get() = _binding!!
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
-    private var ListOfProducts= mutableListOf<Product>()
+
 
 
     override fun onCreateView(
@@ -55,9 +52,9 @@ class HomeFragment : Fragment() {
     }
 
     fun  ShowNext(){
-        if(Indexx>=ListOfProducts.count()) Indexx=0
-        binding.textViewProduct.text= ListOfProducts[Indexx].Name
-        Indexx+=1
+        if(indexx>=ListOfProducts.count()) indexx=0
+        binding.textViewProduct.text= ListOfProducts[indexx].Name
+        indexx+=1
         /*binding.imageOfProduct.setImageDrawable(Drawable.createFromPath("../../../../res/drawable/"+ListOfProducts[Indexx].Img));*/
             //хз как добавить id фотки пока что binding.imageOfProduct.setImageResource()
     }
