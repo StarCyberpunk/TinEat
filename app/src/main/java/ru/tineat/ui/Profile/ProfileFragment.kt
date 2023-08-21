@@ -1,4 +1,4 @@
-package ru.tineat.ui.dashboard
+package ru.tineat.ui.Profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.tineat.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -22,16 +22,13 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val profileViewModel =
+                ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
         return root
     }
 
