@@ -1,8 +1,8 @@
 package ru.tineat
 
 class Basket {
-    constructor()
 
-    var Products = mutableListOf<Product>()
+
+    var products = mutableListOf<Product>()
 
 }

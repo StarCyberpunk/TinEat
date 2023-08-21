@@ -1,8 +1,11 @@
 package ru.tineat
 
-import android.location.Address
 
+data class User(val name: String, val address: String, val phone: String){
 
-data class User(val Name: String,val Address: String,val Phone:String){
+    private val basket: Basket = Basket()
 
+    fun addProduct(product: Product){
+        basket.products.add(product)
+    }
 }

@@ -4,10 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import coil.load
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import ru.tineat.Product
-import ru.tineat.User
+import ru.tineat.R
 import ru.tineat.databinding.FragmentHomeBinding
 
 
@@ -18,49 +25,56 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
 
-
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        //Create list of Product'
-        var pr: Product = Product("Яблоки","apple.jpg","100р/кг")
-        var pr2: Product = Product("Яблоки2","apple.jpg","500р/кг")
-        var pr3: Product = Product("Яблоки3","apple.jpg","1000р/кг")
-        ListOfProducts.add(pr)
-        ListOfProducts.add(pr2)
-        ListOfProducts.add(pr3)
-        binding.NoMainBut.setOnClickListener{SwapeNo_func()}
-        binding.YesMainBut.setOnClickListener { SwapeYes_func() }
 
-        return root
+        binding.NoMainBut.setOnClickListener { viewModel.onNoClicked() }
+        binding.YesMainBut.setOnClickListener { viewModel.onYesClicked() }
+
+        viewModel.onStart()
+
+        viewModel.apply {
+            currentProductLiveData.observe(viewLifecycleOwner, ::handleProduct)
+        }
+
+        return binding.root
+    }
+
+    private fun handleProduct(product: Product?) {
+        binding.textViewProduct.text = product?.name
+        binding.imageOfProduct.loadImage(product?.img ?: "")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+}
 
-    fun SwapeNo_func() {
-        ShowNext()
-    }
-
-    fun  ShowNext(){
-        if(indexx>=ListOfProducts.count()) indexx=0
-        binding.textViewProduct.text= ListOfProducts[indexx].Name
-        indexx+=1
-        /*binding.imageOfProduct.setImageDrawable(Drawable.createFromPath("../../../../res/drawable/"+ListOfProducts[Indexx].Img));*/
-            //хз как добавить id фотки пока что binding.imageOfProduct.setImageResource()
-    }
-
-    fun SwapeYes_func() {
-        //User1.BasketFragment.Products.add(ListOfProducts[Indexx])
-        ShowNext()
+fun ImageView.loadImage(
+    data: Any,
+    isUsePlaceholder: Boolean = true,
+    @DrawableRes
+    placeholder: Int? = null,
+    builder: ((ImageRequest.Builder) -> Unit)? = null
+) {
+    if (data is Int) {
+        setImageResource(data)
+    } else {
+        load(data) {
+            if (isUsePlaceholder) placeholder(placeholder ?: R.drawable.apple)
+            error(R.drawable.ic_cart)
+            scaleType = ImageView.ScaleType.FIT_XY
+            crossfade(true)
+            memoryCachePolicy(CachePolicy.ENABLED)
+            diskCachePolicy(CachePolicy.ENABLED)
+            builder?.invoke(this)
+        }
     }
 }
