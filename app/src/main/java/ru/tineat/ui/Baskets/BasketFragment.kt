@@ -1,4 +1,4 @@
-package ru.tineat.ui.notifications
+package ru.tineat.ui.Baskets
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.tineat.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class BasketFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
@@ -22,16 +22,12 @@ class NotificationsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val basketViewModel =
+                ViewModelProvider(this).get(BasketViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
