@@ -9,7 +9,16 @@
         android:id="@+id/navigation_home"
         android:name="ru.tineat.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_fragmentOne_to_fragmentTwo"
+            app:destination="@id/navigation_notifications">
+            <argument
+                android:name="User"
+                app:argType="string"
+                android:defaultValue="default" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"

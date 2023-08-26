@@ -1,12 +1,17 @@
 package ru.tineat.ui.home
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation.findNavController
 import ru.tineat.Product
 import ru.tineat.User
 import java.util.PriorityQueue
 import java.util.Queue
+import androidx.navigation.findNavController
+import ru.tineat.MainActivity
+import ru.tineat.R
 
 class HomeViewModel : ViewModel() {
 
@@ -22,6 +27,12 @@ class HomeViewModel : ViewModel() {
         productQueue.addAll(mockedProductList)
         showNextProduct()
     }
+
+     fun onDestroy(){
+        var bundle=Bundle()
+        bundle.putSerializable("User",userLiveData.value)
+    }
+
 
     private fun showNextProduct() {
         _currentProductLiveData.value = productQueue.poll()

@@ -47,4 +47,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageOfProduct"
         app:layout_constraintStart_toStartOf="@+id/imageOfProduct" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>

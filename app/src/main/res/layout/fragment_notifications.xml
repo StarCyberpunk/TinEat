@@ -6,24 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.Baskets.BasketFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ListOfItems"
-        android:layout_width="359dp"
-        android:layout_height="477dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="80dp"
-        android:background="#C3AF2626"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button_take"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="164dp"
         android:text="Оплатить"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListOfItems" />
+        app:layout_constraintTop_toBottomOf="@+id/ListView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/ListView"
+        android:layout_width="378dp"
+        android:layout_height="441dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

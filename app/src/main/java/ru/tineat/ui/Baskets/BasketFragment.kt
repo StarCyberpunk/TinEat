@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ru.tineat.User
 import ru.tineat.databinding.FragmentNotificationsBinding
 
 class BasketFragment : Fragment() {
@@ -29,6 +30,14 @@ class BasketFragment : Fragment() {
         val root: View = binding.root
 
         return root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var user:User=savedInstanceState?.getSerializable("User") as User
+        var listForBuy=user.getBasket().products
+        binding.textView.text=listForBuy[0].name
+        
+
     }
 
     override fun onDestroyView() {
