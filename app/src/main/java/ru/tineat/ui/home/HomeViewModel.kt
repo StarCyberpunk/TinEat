@@ -28,12 +28,6 @@ class HomeViewModel : ViewModel() {
         showNextProduct()
     }
 
-     fun onDestroy(){
-        var bundle=Bundle()
-        bundle.putSerializable("User",userLiveData.value)
-    }
-
-
     private fun showNextProduct() {
         _currentProductLiveData.value = productQueue.poll()
     }

@@ -10,29 +10,18 @@
         android:id="@+id/button_take"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="156dp"
         android:text="Оплатить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListProduct"
+        android:layout_width="409dp"
+        android:layout_height="446dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="60dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/ListView"
-        android:layout_width="378dp"
-        android:layout_height="441dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
