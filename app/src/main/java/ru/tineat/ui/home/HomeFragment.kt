@@ -57,7 +57,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         val User = viewModel.userLiveData.value
-        // Здесь мы можем использовать Kotlin экстеншен функцию из fragment-ktx
         setFragmentResult("requestKey", bundleOf("bundleKey" to User))
     }
     
